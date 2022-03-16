@@ -94,6 +94,7 @@ export fn startsWith(str: [*:0]const u8, phrase: [*:0]const u8) bool {
     return res;
 }
 
+/// checks if a string ends with the phrase given
 export fn endsWith(str: [*:0] const u8, phrase: [*:0] const u8) bool {
     var res = false;
     // using integers as index trackers
@@ -116,6 +117,7 @@ export fn lastIndexOf(str: [*:0]const u8) usize {
     return stringLength(str) - 1;
 }
 
+/// tests for the above methods
 test "comparing string literals" {
     comptime var str1 = "alwin"; // you can also figure out the type at comptile time
     const str2 = "alice";
