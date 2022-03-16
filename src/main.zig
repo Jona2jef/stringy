@@ -1,6 +1,7 @@
 const std = @import("std");
 const testing = std.testing;
 const mem = std.mem;
+//const print = std.debug.print;
 
 /// find the length of a string
 export fn stringLength(str: [*:0]const u8) u8 {
@@ -117,7 +118,6 @@ export fn lastIndexOf(str: [*:0]const u8) usize {
     return stringLength(str) - 1;
 }
 
-/// tests for the above methods
 test "comparing string literals" {
     comptime var str1 = "alwin"; // you can also figure out the type at comptile time
     const str2 = "alice";
@@ -134,4 +134,7 @@ test "comparing string literals" {
     try testing.expect(lastIndexOf("world") == 4);
 
     try testing.expectEqual(indexOf("hola",'l'), 2);
+
+//    const res = mem.eql(u8,removeSpaces("hello"),"hello");
+ //   try testing.expect(res);
 }
