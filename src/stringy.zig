@@ -1,7 +1,8 @@
 const std = @import("std");
 const testing = std.testing;
 const mem = std.mem;
-//const print = std.debug.print;
+//const print = std.io.getStdOut().writer().print;
+const print = std.debug.print;
 
 /// find the length of a string
 export fn stringLength(str: [*:0]const u8) u8 {
@@ -14,6 +15,29 @@ export fn stringLength(str: [*:0]const u8) u8 {
         char = str[ind];
     }
     return res;
+}
+
+/// takes a string and extracts characters
+/// as long as a character is encountered
+export fn extractChars(str: [*:0]const u8, res: [*]u8, end: u8) void {
+    // count first
+    //comptime var count: u8 = 0;
+    var char = str[0];
+    var ind: usize = 0;
+    // while (char != end) { // while it is not null
+    //     count += 1;
+    //     ind += 1;
+    //     char = str[ind];
+    // }
+
+    // now start filling
+    ind = 0;
+    char = str[ind];
+    while (char != 0 and char != end) {
+        res[ind] = char;
+        ind += 1;
+        char = str[ind];
+    }
 }
 
 /// takes two strings and the length limit for comparision
@@ -135,6 +159,9 @@ test "comparing string literals" {
 
     try testing.expectEqual(indexOf("hola",'l'), 2);
 
-//    const res = mem.eql(u8,removeSpaces("hello"),"hello");
- //   try testing.expect(res);
+    const str = "helloworld";
+    var buf = [_]u8{0} ** str.len;
+    extractChars(str, &buf, 'o');
+    print("\n\nbuf is {s}\n", .{buf});
+    try testing.expect(true);
 }
