@@ -163,5 +163,6 @@ test "comparing string literals" {
     extractChars(str, &buf, 'w');
     const slice: []u8 = buf[0..];
     print("slice is {s}\n",.{slice});
+    
     try testing.expect(true);
 }
