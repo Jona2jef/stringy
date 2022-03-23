@@ -1,7 +1,6 @@
 const std = @import("std");
 const testing = std.testing;
 const mem = std.mem;
-//const print = std.io.getStdOut().writer().print;
 const print = std.debug.print;
 
 /// find the length of a string
@@ -161,7 +160,8 @@ test "comparing string literals" {
 
     const str = "helloworld";
     var buf = [_]u8{0} ** str.len;
-    extractChars(str, &buf, 'o');
-    print("\n\nbuf is {s}\n", .{buf});
+    extractChars(str, &buf, 'w');
+    const slice: []u8 = buf[0..];
+    print("slice is {s}\n",.{slice});
     try testing.expect(true);
 }
